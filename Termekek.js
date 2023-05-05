@@ -15,9 +15,8 @@ class Termekek {
 
     $(window).on("torol", (event) => {
       console.log("torol", event.detail.id);
-      asszinkron.adatTorol
+      asszinkron.adatTorol(vegpont, event.detail.id);
     });
-
   }
   megjelenit(adat) {
     let termekLista = adat;
