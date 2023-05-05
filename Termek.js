@@ -6,26 +6,31 @@ class Termek {
     this.szuloElem = szuloElem;
     this.elem = elem;
     szuloElem.append(
-      `<div class="card"><div class="card-header">${elem.iro}</div><div class="card-body">${elem.cim}</div> <div class="card-footer">${elem.ar} Ft</div><button type="button">Kedvenc</button></div>`
+      `<div class="card"><div class="card-header">${elem.iro}</div><div class="card-body">${elem.cim}</div> <div class="card-body">${elem.ar} Ft</div><button type="button" class="kedvenc">Kedvenc</button><button type="button" class="torles">Törlés</button></div>`
     );
-    /*
-<div class="card">
-  <div class="card-header">Header</div>
-  <div class="card-body">Content</div>
-  <div class="card-footer">Footer</div>
-</div>
-    */
 
-    const BTTN = $(`div:last-child button`);
+    const favBTTN = $(`div:last-child button`);
+    const deleteBTTN = $(`div:last-child button`);
 
-    BTTN.on("click", () => {
+    favBTTN.on("click", () => {
       this.esemenyTrigger();
+    });
+
+    deleteBTTN.on("click", () => {
+      this.esemenyTrigger2();
     });
   }
 
   esemenyTrigger() {
     const esemeny = new CustomEvent("kedvenc", {
-      detail: this,
+      detail: this.elem,
+    });
+    window.dispatchEvent(esemeny);
+  }
+
+  esemenyTrigger2() {
+    const esemeny = new CustomEvent("torol", {
+      detail: this.elem,
     });
     window.dispatchEvent(esemeny);
   }
